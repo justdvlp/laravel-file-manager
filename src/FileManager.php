@@ -66,7 +66,8 @@ class FileManager
         foreach ($this->configRepository->getDiskList() as $disk) {
             if (array_key_exists($disk, config('filesystems.disks'))) {
                 $config['disks'][$disk] = Arr::only(
-                    config('filesystems.disks')[$disk], ['driver']
+                    config('filesystems.disks')[$disk],
+                    ['driver']
                 );
             }
         }
@@ -149,7 +150,8 @@ class FileManager
             }
 
             // check file size
-            if ($this->configRepository->getMaxUploadFileSize()
+            if (
+                $this->configRepository->getMaxUploadFileSize()
                 && $file->getSize() / 1024 > $this->configRepository->getMaxUploadFileSize()
             ) {
                 $fileNotUploaded = true;
@@ -157,7 +159,8 @@ class FileManager
             }
 
             // check file type
-            if ($this->configRepository->getAllowFileTypes()
+            if (
+                $this->configRepository->getAllowFileTypes()
                 && !in_array(
                     $file->getClientOriginalExtension(),
                     $this->configRepository->getAllowFileTypes()
@@ -170,12 +173,12 @@ class FileManager
             $name = $file->getClientOriginalName();
             if ($this->configRepository->getSlugifyNames()) {
                 $name = Str::slug(
-                        Str::replace(
-                            '.' . $file->getClientOriginalExtension(),
-                            '',
-                            $name
-                        )
-                    ) . '.' . $file->getClientOriginalExtension();
+                    Str::replace(
+                        '.' . $file->getClientOriginalExtension(),
+                        '',
+                        $name
+                    )
+                ) . '.' . $file->getClientOriginalExtension();
             }
             // overwrite or save file
             Storage::disk($disk)->putFileAs(
@@ -314,19 +317,6 @@ class FileManager
      */
     public function thumbnails($disk, $path): mixed
     {
-        if ($this->configRepository->getCache()) {
-            $thumbnail = Image::cache(function ($image) use ($disk, $path) {
-                $image->make(Storage::disk($disk)->get($path))->fit(80);
-            }, $this->configRepository->getCache());
-
-            // output
-            return response()->make(
-                $thumbnail,
-                200,
-                ['Content-Type' => Storage::disk($disk)->mimeType($path)]
-            );
-        }
-
         $thumbnail = Image::make(Storage::disk($disk)->get($path))->fit(80);
 
         return $thumbnail->response();

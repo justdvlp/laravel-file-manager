@@ -3,7 +3,6 @@
 Open configuration file - config/file-manager.php
 
 - fill the disk list from config/filesystem.php (select the desired drive names)
-- set cache
 - select file manager windows configuration
 
 **!!! Be sure to add your middleware to restrict access to the application !!!**
@@ -113,7 +112,7 @@ leftDisk and leftPath is default for the file manager windows configuration - 1,
 
 ## Normalization of uploaded file names
 
-If you expect to work with files that may have filenames that are not considered *normal* `f.e.: "DCIM_2021  - čšč& (1).jpg.jpg"` so basically any time you give the option to upload files to users, you can set `slugifyNames` to `true` and have the names ran through `Str::slug()` before saving it so you file will look something like `dcim-2021-csc-1.jpg` 
+If you expect to work with files that may have filenames that are not considered _normal_ `f.e.: "DCIM_2021  - čšč& (1).jpg.jpg"` so basically any time you give the option to upload files to users, you can set `slugifyNames` to `true` and have the names ran through `Str::slug()` before saving it so you file will look something like `dcim-2021-csc-1.jpg`
 
 ## Dynamic configuration
 
@@ -129,7 +128,7 @@ use Alexusmai\LaravelFileManager\Services\ConfigService\ConfigRepository;
 class TestConfigRepository implements ConfigRepository
 {
     // implement all methods from interface
-    
+
     /**
      * Get disk list
      *
@@ -144,10 +143,10 @@ class TestConfigRepository implements ConfigRepository
                 ['public', 'local', 's3'],
             ];
         }
-        
+
         return ['public'];
     }
-    
+
     ...
 }
 ```
