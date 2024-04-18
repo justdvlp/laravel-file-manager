@@ -1,5 +1,5 @@
 {
-    "name": "alexusmai/laravel-file-manager",
+    "name": "justdvlp/laravel-file-manager",
     "description": "File manager for Laravel",
     "keywords": [
         "laravel",
@@ -13,16 +13,16 @@
             "role": "Developer"
         }
     ],
-    "homepage": "https://github.com/alexusami/laravel-file-manager",
+    "homepage": "https://github.com/justdvlp/laravel-file-manager",
     "license": "MIT",
     "minimum-stability": "dev",
     "require": {
-        "php": "^8.0",
+        "php": "^8.2",
         "ext-zip": "*",
         "ext-json": "*",
-        "laravel/framework": "^9.0|^10.0",
+        "laravel/framework": "^9.0|^10.0|^11.0",
         "league/flysystem": "^3.0",
-        "intervention/image": "^2.7",
+        "intervention/image": "^2.7|^3.4",
         "intervention/imagecache": "^2.6"
     },
     "autoload": {
